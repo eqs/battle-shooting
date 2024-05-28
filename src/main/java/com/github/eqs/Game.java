@@ -43,7 +43,7 @@ public class Game {
         this.conts = conts;
 
         // マップ初期化
-        map = new Map(1280, 960, "./pic/Back.png");
+        map = new Map(1280, 960, "/pic/Back.png");
 
         // スプライト初期化
         players = new Player[4];
@@ -78,7 +78,7 @@ public class Game {
                 (int)(Math.random()*map.getWidth()),
                 (int)(Math.random()*map.getHeight()),
                 Math.random()*360,
-                "./pic/Fighter"+i+".png",
+                "/pic/Fighter"+i+".png",
                 conts[i]
             );
         }

@@ -59,7 +59,7 @@ abstract class Sprite {
      * @param file 読み込む画像ファイルのパス
      */
     protected void loadImage(String file) {
-        img = new ImageIcon(file).getImage();
+        img = Utils.getResourceAsImage(file);
     }
 
     /**

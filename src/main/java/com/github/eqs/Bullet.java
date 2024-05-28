@@ -2,9 +2,10 @@ package com.github.eqs;
 
 import java.awt.*;
 import java.io.*;
-import javax.imageio.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.net.URL;
+import java.net.URI;
 
 
 public class Bullet extends Sprite {
@@ -14,13 +15,8 @@ public class Bullet extends Sprite {
 
     static {
         imgs = new Image[4];
-        try {
-            for (int i = 0; i < 1; i++) {
-                imgs[i] = ImageIO.read(new File("./pic/Bullet"+i+".png"));
-            }
-        } catch (IOException e) {
-            System.out.println("弾の画像の読み込みに失敗:" + e);
-            System.exit(1);
+        for (int i = 0; i < 1; i++) {
+            imgs[i] = Utils.getResourceAsImage("/pic/Bullet" + i + ".png");
         }
     }
 

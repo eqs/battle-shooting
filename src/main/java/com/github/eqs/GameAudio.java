@@ -21,8 +21,8 @@ class GameAudio {
            */
 
         sounds = new AudioClip[3];
-        sounds[0] = Applet.newAudioClip(getClass().getResource("./wav/bom06.wav"));
-        sounds[1] = Applet.newAudioClip(getClass().getResource("./wav/don07.wav"));
+        sounds[0] = Applet.newAudioClip(getClass().getResource("/wav/bom06.wav"));
+        sounds[1] = Applet.newAudioClip(getClass().getResource("/wav/don07.wav"));
     }
 
     public void play(int n) {
