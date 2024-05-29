@@ -41,6 +41,16 @@
       <version>2.0.10</version>
       <classifier>natives-all</classifier>
     </dependency>
+    <dependency>
+      <groupId>com.github.RalleYTN</groupId>
+      <artifactId>XInput-Wrapper</artifactId>
+      <version>1.2.2</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.RalleYTN</groupId>
+      <artifactId>XInput-Plugin-for-JInput</artifactId>
+      <version>1.2.1</version>
+    </dependency>
   </dependencies>
 
   <build>

@@ -1,6 +1,7 @@
 package com.github.eqs;
 
 import java.util.*;
+import de.ralleytn.plugins.jinput.xinput.XInputEnvironmentPlugin;
 import net.java.games.input.Component;
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
@@ -21,7 +22,11 @@ public class ControllerManager {
     public ControllerManager(int num) {
 
         // コントローラの取得
-        ControllerEnvironment env = ControllerEnvironment.getDefaultEnvironment();
+        ControllerEnvironment env = new XInputEnvironmentPlugin();
+        if (!env.isSupported()) {
+            env = ControllerEnvironment.getDefaultEnvironment();
+        }
+
         Controller[] c = env.getControllers();
 
         // コントローラの状態配列の初期化
