@@ -71,33 +71,45 @@ public class Player extends Sprite {
      * プレイヤーの更新
      */
     public void update() {
-        if (cont != null) {
-            int xKey = cont.getXkeyValue();
-            int yKey = cont.getYkeyValue();
-            int sKey = cont.getButtonValue(0);
-            int aKey = cont.getButtonValue(2);
+        int xKey, yKey, sKey, aKey;
 
-            if (xKey < 0) {
-                setAngle(getAngle()-4);
-            }
-            if (xKey > 0) {
-                setAngle(getAngle()+4);
-            }
-            if (sKey % 4 == 1) {
-                game.makeBullet(
-                    ID,
-                    x + radius * Math.cos(Math.toRadians(angle)),
-                    y + radius * Math.sin(Math.toRadians(angle)),
-                    12,
-                    angle,
-                    0
-                );
-            }
+        if (!this.isCPU()) {
+            xKey = cont.getXkeyValue();
+            yKey = cont.getYkeyValue();
+            sKey = cont.getButtonValue(0);
+            aKey = cont.getButtonValue(2);
+        } else {
+            int offset = 256;
+            boolean outside = (
+                this.x < offset || map.getWidth() - offset < this.x
+                || this.y < offset || map.getHeight() - offset < this.y
+            );
+            xKey = outside ? 1 : 0;
+            yKey = 0;
+            sKey = 0;
+            aKey = outside ? 5 : 0;
+        }
 
-            if (aKey > 2) {
-                // 加速
-                setSpeed(Math.min(getSpeed()+2, MAX_SPEED));
-            }
+        if (xKey < 0) {
+            setAngle(getAngle()-4);
+        }
+        if (xKey > 0) {
+            setAngle(getAngle()+4);
+        }
+        if (sKey % 4 == 1) {
+            game.makeBullet(
+                ID,
+                x + radius * Math.cos(Math.toRadians(angle)),
+                y + radius * Math.sin(Math.toRadians(angle)),
+                12,
+                angle,
+                0
+            );
+        }
+
+        if (aKey > 2) {
+            // 加速
+            setSpeed(Math.min(getSpeed()+2, MAX_SPEED));
         }
 
         x += speedx;
@@ -123,5 +135,9 @@ public class Player extends Sprite {
         g.setBackground(new Color(255, 255, 255, 255));
         g2.drawImage(img, at, null);
         g.drawImage(_buf_img, x, y, null);
+    }
+
+    public boolean isCPU() {
+        return this.cont == null;
     }
 }
